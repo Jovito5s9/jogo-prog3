@@ -32,19 +32,19 @@ void Personagem::setVida(int vida) {
     }
 }
 
-int Personagem::getDano() {
+int Personagem::getDano() const {
     return dano;
 }
 
-int Personagem::getDefesa() {
+int Personagem::getDefesa() const {
     return defesa;
 }
 
-int Personagem::getVelocidade() {
+int Personagem::getVelocidade() const {
     return velocidade;
 }
 
-int Personagem::getVida() {
+int Personagem::getVida() const {
     return vida;
 }
 
@@ -53,7 +53,7 @@ void Personagem::setJaAtacou(bool atacou) {
     this->jaAtacou = atacou;
 }
 
-bool Personagem::getJaAtacou() {
+bool Personagem::getJaAtacou() const {
     return jaAtacou;
 }
 

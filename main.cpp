@@ -5,30 +5,51 @@
 #include <vector>
 #include <unistd.h>
 
-int selectplayer(std::vector<Personagem> listaHerois) {
-    
+void printStatus(const std::string& nome, const Personagem& personagem) {
+    std::cout << "+------------------------------------------------+" << std::endl;
+    std::cout << "| " << nome << std::endl;
+    std::cout << "+------------------------------------------------+" << std::endl;
+    std::cout << "| Vida:       " << personagem.getVida() << std::endl;
+    std::cout << "| Dano:       " << personagem.getDano() << std::endl;
+    std::cout << "| Defesa:     " << personagem.getDefesa() << std::endl;
+    std::cout << "| Velocidade: " << personagem.getVelocidade() << std::endl;
+    std::cout << "+------------------------------------------------+" << std::endl;
+}
+
+int selectplayer(const std::vector<Personagem>& listaHerois) {
     int escolha;
     
-    do{
-        std::cout << "Escolha um personagem para atacar o monstro:" << std::endl;
-        if(listaHerois[0].getVida() > 0){
-            std::cout << "1. Guerreiro (Vida: " << listaHerois[0].getVida() << ")" << std::endl;
+    do {
+        std::cout << "\nEscolha um personagem para atacar o monstro:" << std::endl;
+
+        std::cout << "1. Guerreiro";
+        if (listaHerois[0].getVida() > 0) {
+            std::cout << " - Vida: " << listaHerois[0].getVida();
         } else {
-            std::cout << "1. Guerreiro (Morto)" << std::endl;
+            std::cout << " - MORTO";
         }
-        if(listaHerois[1].getVida() > 0){
-            std::cout << "2. Mago (Vida: " << listaHerois[1].getVida() << ")" << std::endl;
+        std::cout << std::endl;
+
+        std::cout << "2. Mago";
+        if (listaHerois[1].getVida() > 0) {
+            std::cout << " - Vida: " << listaHerois[1].getVida();
         } else {
-            std::cout << "2. Mago (Morto)" << std::endl;
+            std::cout << " - MORTO";
         }
-        if(listaHerois[2].getVida() > 0){
-            std::cout << "3. Arqueiro (Vida: " << listaHerois[2].getVida() << ")" << std::endl;
+        std::cout << std::endl;
+
+        std::cout << "3. Arqueiro";
+        if (listaHerois[2].getVida() > 0) {
+            std::cout << " - Vida: " << listaHerois[2].getVida();
         } else {
-            std::cout << "3. Arqueiro (Morto)" << std::endl;
+            std::cout << " - MORTO";
         }
+        std::cout << std::endl;
+
         std::cout << "Digite o número do personagem: ";
         std::cin >> escolha;
-    }while(escolha < 1 || escolha > 3 || listaHerois[escolha - 1].getVida() <= 0);
+    } while (escolha < 1 || escolha > 3 || listaHerois[escolha - 1].getVida() <= 0);
+
     return escolha;
 }
 
@@ -43,7 +64,14 @@ int main(){
     Personagem arqueiro(60, 40, 4, 7);
     std::vector<Personagem> listaHerois{guerreiro, mago, arqueiro};
 
-    Personagem monstro(rand() % 100 + 1, rand() % 80 + 1, rand() % 10 + 1, rand() % 4 + 3);
+    Personagem monstro(rand() % 100 + 100, rand() % 80 + 1, rand() % 10 + 10, rand() % 4 + 3);
+
+    std::cout << "\n================= MONSTRO =================" << std::endl;
+    printStatus("Monstro", monstro);
+    std::cout << "\n=============== HEROIS DISPONIVEIS ===============" << std::endl;
+    printStatus("Guerreiro", listaHerois[0]);
+    printStatus("Mago", listaHerois[1]);
+    printStatus("Arqueiro", listaHerois[2]);
 
     bool jogoAtivo = true;
     bool jogoGanho = false;
